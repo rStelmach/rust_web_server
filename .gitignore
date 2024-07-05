@@ -1,0 +1,10 @@
+target/
+**/*.rs.bk
+**/*.rs.swp
+**/*.rs.swo
+**/*.rs~.*
+**/*.swp
+**/*.swo
+**/*.DS_Store
+**/*.db
+.env

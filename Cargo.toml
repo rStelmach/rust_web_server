@@ -7,13 +7,15 @@ edition = "2021"
 axum = "0.7.4"
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
-dotenv = "0.15"
+dotenvy = "0.15.7"
 tracing-subscriber = "0.3"  
 log = "0.4"
 hyper = "1.4.0"
 serde_json = "1.0"
 tower = "0.4"
 serde = { version = "1.0", features = ["derive"] }
+reqwest = { version = "0.12.5", features = ["json"] }
+thiserror = "1.0.61"
 
 # uuid = { version = "1.4", features = ["fast-rng", "v4", "serde"] }
 # diesel = { version = "2.1", features = ["postgres", "uuid", "serde_json"] }

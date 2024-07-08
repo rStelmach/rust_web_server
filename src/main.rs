@@ -1,4 +1,5 @@
 mod config;
+mod errors;
 mod handlers;
 mod routes;
 mod state;
@@ -7,6 +8,8 @@ use tracing_subscriber;
 
 #[tokio::main]
 async fn main() {
+    dotenvy::dotenv().unwrap();
+
     tracing_subscriber::fmt::init();
 
     let app = routes::create_routes();

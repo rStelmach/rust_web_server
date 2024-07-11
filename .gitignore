@@ -8,3 +8,6 @@ target/
 **/*.DS_Store
 **/*.db
 .env
+migrations/log
+docker-compose.yml
+Dockerfile

@@ -4,11 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-axum = "0.7.4"
+axum = { version = "0.7.5", features = ["macros"] }
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 dotenvy = "0.15.7"
-tracing-subscriber = "0.3"  
+tracing-subscriber = { version="0.3.18" , features = ["env-filter"] }
 log = "0.4"
 hyper = "1.4.0"
 serde_json = "1.0"
@@ -18,9 +18,9 @@ reqwest = { version = "0.12.5", features = ["json"] }
 thiserror = "1.0.61"
 cargo-watch = "8.5.2"
 anyhow = "1.0.86"
-# uuid = { version = "1.4", features = ["fast-rng", "v4", "serde"] }
-diesel = { version = "2.2.1", features = ["postgres", "uuid", "serde_json","r2d2"] }
+diesel = { version = "2.1.6", features = ["postgres", "uuid", "serde_json","r2d2"] }
 r2d2 = "0.8.10"
 diesel_migrations = "2"
-# deadpool-diesel = { version = "0.6.1", features = ["postgres"] }
 chrono = { version = "0.4.26", features = ["serde"] }
+diesel-async = { version = "0.4.1", features = ["postgres", "bb8"] }
+bb8 = "0.8.5"

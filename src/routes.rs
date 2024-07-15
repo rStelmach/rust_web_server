@@ -1,13 +1,21 @@
 use crate::handlers::{
-    astro_details::astro_details_handler, hello::hello_handler, save_chart::save_chart_handler,
+    astro_details::astro_details_handler,
+    charts::{create::save_chart, delete::delete_chart},
+    hello::hello_handler,
 };
-use axum::{routing::get, routing::post, Router};
+use axum::{
+    routing::{delete, get, post},
+    Router,
+};
+use bb8::Pool;
+use diesel_async::pooled_connection::AsyncDieselConnectionManager;
+use diesel_async::AsyncPgConnection;
 
-pub fn create_routes() -> Router {
+pub fn create_routes(pool: Pool<AsyncDieselConnectionManager<AsyncPgConnection>>) -> Router {
     Router::new()
         .route("/hello", get(hello_handler))
         .route("/astro_details", post(astro_details_handler))
-        .route("/save_chart", get(save_chart_handler))
+        .route("/charts", post(save_chart))
+        .route("/charts/:id", delete(delete_chart))
+        .with_state(pool)
 }
-
-//db_pool: DbPool add to routes

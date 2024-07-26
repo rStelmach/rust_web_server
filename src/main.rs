@@ -22,9 +22,19 @@ async fn main() {
         .init();
 
     let db_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    log::info!("Database URL: {:?}", db_url);
 
-    let config = AsyncDieselConnectionManager::<AsyncPgConnection>::new(db_url);
-    let pool = bb8::Pool::builder().build(config).await.unwrap();
+    let config = AsyncDieselConnectionManager::<AsyncPgConnection>::new(db_url.clone());
+    log::info!("Config: {:?}", config);
+
+    let pool = match bb8::Pool::builder().build(config).await {
+        Ok(pool) => pool,
+        Err(e) => {
+            log::error!("Failed to create pool: {:?}", e);
+            return;
+        }
+    };
+    log::info!("Pool created: {:?}", pool);
 
     let app = routes::create_routes(pool);
 

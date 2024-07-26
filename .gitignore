@@ -8,6 +8,7 @@ target/
 **/*.DS_Store
 **/*.db
 .env
+ca-certificate.crt
 migrations/log
 docker-compose.yml
 Dockerfile
